@@ -24,7 +24,7 @@ jobs:
         run: flutter build web --no-web-resources-cdn
       - uses: actions/upload-artifact@v4
         with:
-          name: blisko-web-demo
+          name: fafel-guide-web-demo
           path: build/web
       - uses: actions/setup-java@v4
         with:
@@ -34,5 +34,5 @@ jobs:
         run: flutter build apk --debug
       - uses: actions/upload-artifact@v4
         with:
-          name: blisko-android-demo
+          name: fafel-guide-android-demo
           path: build/app/outputs/flutter-apk/app-debug.apk

@@ -23,7 +23,7 @@ Future<void> bootstrap() async {
     }
   }
   runApp(
-    BliskoApp(
+    FafelGuideApp(
       controller: AppController(client: client, bootError: error),
     ),
   );

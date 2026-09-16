@@ -14,11 +14,15 @@ void main() {
       final controller = AppController(
         widgetUpdater: (_, {demo = false}) async {},
       );
-      await tester.pumpWidget(BliskoApp(controller: controller));
+      await tester.pumpWidget(FafelGuideApp(controller: controller));
       await tester.ensureVisible(find.text('Zobacz demo'));
       await tester.tap(find.text('Zobacz demo'));
       await tester.pumpAndSettle();
       expect(find.text('Jak się dzisiaj czujesz?'), findsOneWidget);
+      expect(find.text('Fąfel Guide'), findsOneWidget);
+      expect(find.byType(NavigationDestination), findsNWidgets(2));
+      expect(find.text('Nasza przestrzeń'), findsNothing);
+      expect(find.textContaining('Każdy dzień może być inny'), findsNothing);
       await tester.scrollUntilVisible(find.text('Daj znać, co u Ciebie'), 220);
       await tester.tap(find.text('Daj znać, co u Ciebie'));
       await tester.pumpAndSettle();
@@ -48,10 +52,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Daj znać, co u Ciebie'), findsNothing);
       expect(find.text('Małe wieści od niej.'), findsOneWidget);
-      await tester.tap(find.text('Nasza przestrzeń'));
-      await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(find.text('Zamknij demo'), 300);
-      await tester.tap(find.text('Zamknij demo'));
+      await tester.tap(find.byTooltip('Zamknij demo'));
       await tester.pumpAndSettle();
       expect(controller.entries, isEmpty);
       expect(find.text('Zobacz demo'), findsOneWidget);
@@ -70,7 +71,7 @@ void main() {
       widgetUpdater: (_, {demo = false}) async {},
     );
     await controller.enterDemo();
-    await tester.pumpWidget(BliskoApp(controller: controller));
+    await tester.pumpWidget(FafelGuideApp(controller: controller));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
     await tester.scrollUntilVisible(find.text('Daj znać, co u Ciebie'), 220);

@@ -1,4 +1,4 @@
-# Blisko · Flutter
+# Fąfel Guide · Flutter
 
 Prywatna przestrzeń dla dwóch osób: samopoczucie 1–5, ręcznie wybrana faza cyklu, notatka i zdjęcie. Flutter na Androida i jako instalowana aplikacja webowa na iPhone'a, Supabase do synchronizacji.
 
@@ -64,7 +64,7 @@ Otwórz otrzymany adres w Safari → Udostępnij → Dodaj do ekranu początkowe
 flutter build apk --debug --dart-define-from-file=config/local.json
 ```
 
-Plik: `build/app/outputs/flutter-apk/app-debug.apk`. Prześlij na swój telefon, otwórz i zezwól tej aplikacji (np. menedżerowi plików) na instalację z tego źródła. Otwórz Blisko i zaloguj się. Przytrzymaj ekran główny → Widgety → Blisko.
+Plik: `build/app/outputs/flutter-apk/app-debug.apk`. Prześlij na swój telefon, otwórz i zezwól tej aplikacji (np. menedżerowi plików) na instalację z tego źródła. Otwórz Fąfel Guide i zaloguj się. Przytrzymaj ekran główny → Widgety → Fąfel Guide.
 
 To instalacja testowa podpisana lokalnym kluczem debug. Budowanie APK na różnych komputerach/CI może wymagać odinstalowania poprzedniej wersji. Przed stałym używaniem skonfiguruj własny release keystore i zachowaj go poza repo. Szablon release aktualnie również używa klucza debug.
 

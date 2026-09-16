@@ -14,4 +14,4 @@ createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': mime[extname(file)] || 'application/octet-stream',
       'Cache-Control': 'no-cache' }).end(data);
   } catch { res.writeHead(404).end('Not found'); }
-}).listen(4173, '127.0.0.1', () => console.log('Blisko preview: http://127.0.0.1:4173'));
+}).listen(4173, '127.0.0.1', () => console.log('Fąfel Guide preview: http://127.0.0.1:4173'));

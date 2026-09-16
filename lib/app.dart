@@ -11,14 +11,15 @@ const sage = Color(0xFF52684D);
 const paper = Color(0xFFFAF8F2);
 const rose = Color(0xFFEDD6CC);
 
-class BliskoApp extends StatefulWidget {
-  const BliskoApp({super.key, required this.controller});
+class FafelGuideApp extends StatefulWidget {
+  const FafelGuideApp({super.key, required this.controller});
   final AppController controller;
   @override
-  State<BliskoApp> createState() => _BliskoAppState();
+  State<FafelGuideApp> createState() => _FafelGuideAppState();
 }
 
-class _BliskoAppState extends State<BliskoApp> with WidgetsBindingObserver {
+class _FafelGuideAppState extends State<FafelGuideApp>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,7 @@ class _BliskoAppState extends State<BliskoApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'Blisko',
+    title: 'Fąfel Guide',
     debugShowCheckedModeBanner: false,
     locale: const Locale('pl'),
     supportedLocales: const [Locale('pl')],
@@ -132,13 +133,18 @@ class Brand extends StatelessWidget {
     children: [
       Icon(Icons.favorite_rounded, color: sage, size: 24),
       SizedBox(width: 10),
-      Text(
-        'blisko',
-        style: TextStyle(
-          fontFamily: 'Georgia',
-          fontSize: 30,
-          fontWeight: FontWeight.w600,
-          letterSpacing: -1,
+      Flexible(
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            'Fąfel Guide',
+            style: TextStyle(
+              fontFamily: 'Georgia',
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              letterSpacing: -1,
+            ),
+          ),
         ),
       ),
     ],
@@ -328,6 +334,11 @@ class _HomeState extends State<Home> {
             onPressed: c.busy ? null : c.refresh,
             icon: const Icon(Icons.refresh_rounded),
           ),
+          IconButton(
+            tooltip: c.demo ? 'Zamknij demo' : 'Wyloguj się',
+            onPressed: c.busy ? null : c.logout,
+            icon: const Icon(Icons.logout_rounded),
+          ),
           const SizedBox(width: 10),
         ],
       ),
@@ -391,8 +402,7 @@ class _HomeState extends State<Home> {
                       controller: c,
                       onCompose: _compose,
                     ),
-                    1 => History(controller: c),
-                    _ => Settings(controller: c),
+                    _ => History(controller: c),
                   },
                 ),
               ],
@@ -414,10 +424,6 @@ class _HomeState extends State<Home> {
           NavigationDestination(
             icon: Icon(Icons.history_rounded),
             label: 'Historia',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.tune_rounded),
-            label: 'Nasza przestrzeń',
           ),
         ],
       ),
@@ -479,27 +485,6 @@ class Dashboard extends StatelessWidget {
               icon: const Icon(Icons.add_rounded),
               label: const Text('Daj znać, co u Ciebie'),
             ),
-          const SizedBox(height: 28),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: const Color(0xFFEAEEDF),
-              borderRadius: BorderRadius.circular(22),
-            ),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(Icons.spa_outlined, color: sage),
-                SizedBox(width: 14),
-                Expanded(
-                  child: Text(
-                    'Każdy dzień może być inny.\nTu jest miejsce na wszystkie.',
-                    style: TextStyle(height: 1.6, color: sage),
-                  ),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(height: 18),
           Center(
             child: Text(
@@ -1008,85 +993,6 @@ class _ComposeState extends State<Compose> {
           ),
         ),
       ),
-    ),
-  );
-}
-
-class Settings extends StatelessWidget {
-  const Settings({super.key, required this.controller});
-  final AppController controller;
-  @override
-  Widget build(BuildContext context) => ListView(
-    padding: const EdgeInsets.all(24),
-    children: [
-      const Text(
-        'Tylko Wasza\nprzestrzeń.',
-        style: TextStyle(fontFamily: 'Georgia', fontSize: 34, height: 1.2),
-      ),
-      const SizedBox(height: 24),
-      _tile(
-        Icons.people_outline,
-        'Twoja rola',
-        controller.writer
-            ? 'Dzielisz się samopoczuciem i zarządzasz swoimi wpisami.'
-            : 'Odbierasz wpisy i jesteś blisko.',
-      ),
-      _tile(
-        Icons.lock_outline,
-        'Prywatność',
-        'Dostęp do danych mają konta przypisane do Waszej pary. Ta wersja nie ma szyfrowania end-to-end.',
-      ),
-      _tile(
-        Icons.add_to_home_screen,
-        'Na iPhonie',
-        'Otwórz adres aplikacji w Safari → Udostępnij → Dodaj do ekranu początkowego.',
-      ),
-      _tile(
-        Icons.widgets_outlined,
-        'Widget Androida',
-        'Przytrzymaj ekran główny → Widgety → Blisko. Pokazuje ostatnio pobrany wpis. Dotknięcie otwiera aplikację i pobiera aktualizacje.',
-      ),
-      _tile(
-        Icons.notifications_none,
-        'Aktualizacje',
-        'Wpisy odświeżają się przy otwarciu i podczas korzystania z aplikacji. Powiadomienia push i automatyczne odświeżanie widgetu w tle nie są jeszcze włączone.',
-      ),
-      _tile(
-        Icons.visibility_outlined,
-        'Dyskrecja',
-        'Widget pokazuje samopoczucie, fazę i fragment notatki. Dodaj go tylko, jeśli chcesz mieć te dane na ekranie głównym.',
-      ),
-      const SizedBox(height: 20),
-      OutlinedButton(
-        onPressed: controller.logout,
-        child: Text(controller.demo ? 'Zamknij demo' : 'Wyloguj się'),
-      ),
-    ],
-  );
-  Widget _tile(IconData icon, String title, String body) => Padding(
-    padding: const EdgeInsets.only(bottom: 24),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, color: sage),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(body, style: const TextStyle(height: 1.6, color: sage)),
-            ],
-          ),
-        ),
-      ],
     ),
   );
 }

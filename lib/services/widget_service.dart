@@ -25,7 +25,7 @@ class WidgetService {
     );
     await HomeWidget.saveWidgetData<String>(
       'note',
-      entry?.note ?? 'Otwórz Blisko, aby się połączyć.',
+      entry?.note ?? 'Otwórz Fąfel Guide, aby się połączyć.',
     );
     final date = entry?.createdAt;
     final stamp = date == null

@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Blisko</string>
+	<string>Fąfel Guide</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,7 +29,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Wybierz zdjęcie, którym chcesz podzielić się z bliską osobą.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Zrób zdjęcie do swojego wpisu w Blisko.</string>
+	<string>Zrób zdjęcie do swojego wpisu w Fąfel Guide.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
