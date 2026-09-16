@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/widget_background" android:padding="20dp"
+    android:orientation="vertical">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="♡  blisko" android:textColor="#52684D" android:textSize="15sp"
+        android:textStyle="bold" />
+    <TextView android:id="@+id/mood" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textSize="34sp"
+        android:textColor="#353C34" android:textStyle="bold" android:maxLines="1"/>
+    <TextView android:id="@+id/phase" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textSize="13sp" android:textColor="#52684D"
+        android:maxLines="1" android:ellipsize="end" />
+    <TextView android:id="@+id/note" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" android:textSize="14sp"
+        android:textColor="#353C34" android:layout_marginTop="8dp"
+        android:maxLines="3" android:ellipsize="end" />
+    <TextView android:id="@+id/updated" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textSize="10sp" android:textColor="#52684D"
+        android:maxLines="2"/>
+</LinearLayout>
