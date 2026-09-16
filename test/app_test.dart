@@ -23,9 +23,23 @@ void main() {
       expect(find.byType(NavigationDestination), findsNWidgets(2));
       expect(find.text('Nasza przestrzeń'), findsNothing);
       expect(find.textContaining('Każdy dzień może być inny'), findsNothing);
+      expect(find.text('🤓'), findsOneWidget);
+      expect(find.text('Dobrze'), findsOneWidget);
       await tester.scrollUntilVisible(find.text('Daj znać, co u Ciebie'), 220);
       await tester.tap(find.text('Daj znać, co u Ciebie'));
       await tester.pumpAndSettle();
+      const faces = ['😭', '🥹', '😼', '🤓', '👹'];
+      const labels = ['Smutas', 'Mil', 'Lim', 'Dobrze', 'Super'];
+      for (var i = 0; i < faces.length; i++) {
+        final choice = find.byKey(ValueKey('mood-${i + 1}'));
+        expect(
+          find.descendant(of: choice, matching: find.text(faces[i])),
+          findsOneWidget,
+        );
+        await tester.tap(choice);
+        await tester.pumpAndSettle();
+        expect(find.text(labels[i]), findsOneWidget);
+      }
       await tester.tap(find.byKey(const ValueKey('mood-2')));
       await tester.scrollUntilVisible(
         find.byType(TextField),
@@ -46,6 +60,8 @@ void main() {
       expect(controller.entries.first.mood, 2);
       expect(controller.entries.first.note, 'Potrzebuję dziś przytulenia.');
       expect(find.text('Potrzebuję dziś przytulenia.'), findsOneWidget);
+      expect(find.text('🥹'), findsOneWidget);
+      expect(find.text('Mil'), findsOneWidget);
       await tester.pump(const Duration(seconds: 5));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Zmień'));

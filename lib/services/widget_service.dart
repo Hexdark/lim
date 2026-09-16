@@ -17,7 +17,11 @@ class WidgetService {
     if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return;
     await HomeWidget.saveWidgetData<String>(
       'mood',
-      entry == null ? '♡' : '${entry.mood}/5',
+      entry == null ? '♡' : '${moodFaces[entry.mood - 1]} ${entry.mood}/5',
+    );
+    await HomeWidget.saveWidgetData<String>(
+      'mood_label',
+      entry == null ? '' : moodLabels[entry.mood - 1],
     );
     await HomeWidget.saveWidgetData<String>(
       'phase',

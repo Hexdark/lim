@@ -9,6 +9,10 @@ import 'package:we_two/services/photo_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  test('Mood scores map to the requested names and emoji in order', () {
+    expect(moodLabels, ['Smutas', 'Mil', 'Lim', 'Dobrze', 'Super']);
+    expect(moodFaces, ['😭', '🥹', '😼', '🤓', '👹']);
+  });
   test('Draft rejects invalid mood, overlong note and oversized photo', () {
     for (final mood in [0, 6]) {
       expect(

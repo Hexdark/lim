@@ -14,14 +14,8 @@ enum CyclePhase {
       values.firstWhere((p) => p.name == value, orElse: () => unknown);
 }
 
-const moodLabels = [
-  'Bardzo słabo',
-  'Słabiej',
-  'W porządku',
-  'Dobrze',
-  'Świetnie',
-];
-const moodFaces = ['😞', '🙁', '😐', '🙂', '🥰'];
+const moodLabels = ['Smutas', 'Mil', 'Lim', 'Dobrze', 'Super'];
+const moodFaces = ['😭', '🥹', '😼', '🤓', '👹'];
 
 class Membership {
   const Membership({

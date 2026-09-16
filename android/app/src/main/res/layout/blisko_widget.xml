@@ -10,6 +10,10 @@
     <TextView android:id="@+id/mood" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:textSize="34sp"
         android:textColor="#353C34" android:textStyle="bold" android:maxLines="1"/>
+    <TextView android:id="@+id/mood_label" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textSize="14sp"
+        android:textColor="#353C34" android:textStyle="bold"
+        android:maxLines="1" android:ellipsize="end" />
     <TextView android:id="@+id/phase" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:textSize="13sp" android:textColor="#52684D"
         android:maxLines="1" android:ellipsize="end" />

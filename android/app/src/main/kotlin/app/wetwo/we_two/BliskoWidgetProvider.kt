@@ -17,6 +17,7 @@ class BliskoWidgetProvider : HomeWidgetProvider() {
         appWidgetIds.forEach { widgetId ->
             val views = RemoteViews(context.packageName, R.layout.blisko_widget).apply {
                 setTextViewText(R.id.mood, widgetData.getString("mood", "♡"))
+                setTextViewText(R.id.mood_label, widgetData.getString("mood_label", ""))
                 setTextViewText(R.id.phase, widgetData.getString("phase", "Jeszcze bez wpisu"))
                 setTextViewText(R.id.note, widgetData.getString("note", "Otwórz Fąfel Guide, aby się połączyć."))
                 setTextViewText(R.id.updated, widgetData.getString("updated", "Dotknij, aby otworzyć"))
